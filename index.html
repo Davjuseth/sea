@@ -7,8 +7,7 @@
 
   <!-- PWA -->
   <meta name="theme-color" content="#ebe4d4">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="/manifest.json?v=2">
 
   <!-- Favicons / iOS icons -->
@@ -18,7 +17,6 @@
   <!-- iOS Home Screen -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="SEA Forms">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <style>
     :root{
@@ -31,9 +29,10 @@
       --text:#111;
       --muted:rgba(17,17,17,.62);
 
-      --radius:22px;
       --shadow:0 18px 45px rgba(0,0,0,.12);
-      --stroke:rgba(0,0,0,.08);
+
+      --sheetZ:2147483647;
+      --sheetBg:#0b1220;
     }
 
     *{ box-sizing:border-box; }
@@ -42,12 +41,7 @@
       height:100%;
       margin:0;
       padding:0;
-      background: linear-gradient(
-    to bottom,
-    #ebe4d4 0%,
-    #ebe4d4 5%,
-    #fdfaf3 100%
-  );
+      background: linear-gradient(to bottom, #ebe4d4 0%, #ebe4d4 5%, #fdfaf3 100%);
       overscroll-behavior:none;
     }
 
@@ -71,19 +65,16 @@
       display:block;
     }
 
-    /* ✅ Fixed: no empty CSS values */
-   .card{
-  display:flex;
-  flex-direction:column;
-  height: calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-}
-
-    .card:before{ content:none !important; }
+    .card{
+      display:flex;
+      flex-direction:column;
+      height: calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    }
 
     .header{
-     position: sticky;
-  top: 0;
-  z-index: 50;
+      position:sticky;
+      top:0;
+      z-index:50;
       padding:10px 16px;
       background:#ebe4d4;
       border-bottom:1px solid rgba(0,0,0,.06);
@@ -95,8 +86,6 @@
       gap:10px;
       align-items:center;
     }
-    
-
 
     .logo{
       width:50px;
@@ -108,7 +97,6 @@
       position:relative;
       z-index:10;
     }
-
     .logo img{
       width:100%;
       height:100%;
@@ -126,13 +114,7 @@
       color:#111;
     }
 
-    .titles .sub{
-      margin-top:4px;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .searchRow{ margin-top:1px; }
+    .searchRow{ margin-top:8px; }
 
     .search{
       display:flex;
@@ -180,17 +162,25 @@
     .grid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:12px;
+      gap:8px;
     }
-
-    /* ✅ Mobile: 1 column */
     @media (max-width:520px){
       .grid{ grid-template-columns:1fr; }
     }
 
-    a.btn{
+    /* ✅ ALWAYS side-by-side: no mobile stacking */
+    .quickRow{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    /* ---- Gold button style ---- */
+    a.btn, button.btn{
       position:relative;
       display:flex;
+      align-items:center;
       gap:12px;
       padding:7px;
       border-radius:20px;
@@ -204,9 +194,15 @@
 
       box-shadow:0 14px 34px rgba(0,0,0,.14);
       transition: transform .14s ease, filter .14s ease, box-shadow .14s ease;
+
+      cursor:pointer;
+      outline:0;
+
+      justify-content:flex-start; /* ✅ left */
+      text-align:left;            /* ✅ left */
     }
 
-    a.btn::before{
+    a.btn::before, button.btn::before{
       content:"";
       position:absolute;
       inset:1px;
@@ -216,7 +212,7 @@
       opacity:.60;
       z-index:0;
     }
-    a.btn > *{ position:relative; z-index:1; }
+    a.btn > *, button.btn > *{ position:relative; z-index:1; }
 
     .icon{
       width:40px;
@@ -239,9 +235,10 @@
       stroke-linejoin:round;
     }
 
-    a.btn .txt{ min-width:0; }
+    .txt{ min-width:0; text-align:left; }
 
-    a.btn strong{
+    /* default: title can wrap 2 lines */
+    .txt strong{
       display:-webkit-box;
       -webkit-box-orient:vertical;
       -webkit-line-clamp:2;
@@ -250,9 +247,9 @@
       font-weight:600;
       line-height:1.2;
       margin-top:1px;
+      text-align:left;
     }
-
-    a.btn span{
+    .txt span{
       display:-webkit-box;
       -webkit-box-orient:vertical;
       -webkit-line-clamp:1;
@@ -261,22 +258,18 @@
       font-size:12px;
       color:rgba(0,0,0,.65);
       line-height:1.35;
+      text-align:left;
     }
 
     .hidden{ display:none !important; }
 
+    /* ✅ Fix: remove absolute icon + weird padding on small screens (no more big gap) */
     @media (max-width:420px){
-      a.btn{ padding:5px 5px; }
-      a.btn .icon{
-        position:absolute;
-        top:5px; left:6px;
-        width:28px; height:28px;
-        border-radius:12px;
-      }
-      a.btn .icon svg{ width:13px; height:13px; }
-      a.btn .txt{ padding-left:35px; }
-      a.btn strong{ font-size:13px; line-height:1.15; }
-      a.btn span{ font-size:11px; line-height:1.25; }
+      a.btn, button.btn{ padding:6px 8px; gap:10px; }
+      .icon{ width:28px; height:28px; border-radius:12px; }
+      .icon svg{ width:13px; height:13px; }
+      .txt strong{ font-size:13px; line-height:1.15; }
+      .txt span{ font-size:11px; line-height:1.25; }
     }
 
     .note{
@@ -287,6 +280,301 @@
       color:rgba(0,0,0,.58);
       line-height:1.45;
     }
+
+    /* =========================
+       1) NEWS TICKER (Section 1)
+       ========================= */
+    .newsCard{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:18px;
+      background:rgba(255,255,255,.72);
+      box-shadow:0 10px 22px rgba(0,0,0,.08);
+      overflow:hidden;
+      padding:10px 12px;
+      margin-bottom:12px;
+    }
+    .newsTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .newsTop .lbl{
+      font-size:13px;
+      color:rgba(0,0,0,.70);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:600;
+    }
+    .dot{
+      width:8px; height:8px;
+      border-radius:999px;
+      background:#22c55e;
+      box-shadow:0 0 0 4px rgba(34,197,94,.18);
+      flex:0 0 auto;
+    }
+    .newsTop .mini{
+      font-size:12px;
+      color:rgba(0,0,0,.55);
+      white-space:nowrap;
+    }
+
+    .ticker{
+      position:relative;
+      overflow:hidden;
+      border-radius:14px;
+      background:rgba(255,255,255,.85);
+      border:1px solid rgba(0,0,0,.08);
+    }
+    .tickerTrack{
+      display:flex;
+      gap:18px;
+      padding:10px 12px;
+      width:max-content;
+      animation: tickerMove 28s linear infinite;
+      will-change: transform;
+    }
+    .ticker:hover .tickerTrack{ animation-play-state:paused; }
+    .ticker:active .tickerTrack{ animation-play-state:paused; }
+
+    .tickItem{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:13px;
+      color:rgba(0,0,0,.78);
+      white-space:nowrap;
+      text-decoration:none;
+    }
+    .pill{
+      font-size:11px;
+      padding:3px 8px;
+      border-radius:999px;
+      background:rgba(231,201,107,.35);
+      border:1px solid rgba(139,107,18,.18);
+      color:#6b520d;
+      font-weight:700;
+      flex:0 0 auto;
+    }
+
+    @keyframes tickerMove{
+      0%{ transform:translateX(0); }
+      100%{ transform:translateX(-50%); }
+    }
+
+    /* =========================
+       MODAL SHEET (Containers)
+       ========================= */
+    body.SEA_lock{
+      position:fixed;
+      width:100%;
+      overflow:hidden;
+      left:0;
+    }
+
+    .SEA_overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      z-index:var(--sheetZ);
+      display:none;
+      padding:18px 12px calc(18px + env(safe-area-inset-bottom));
+    }
+
+    /* ✅ open from top */
+    .SEA_overlay.SEA_active{
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top: calc(12px + env(safe-area-inset-top));
+    }
+
+    .SEA_sheet{
+      width:min(820px, 100%);
+      background:var(--sheetBg);
+      color:#fff;
+      border-radius:22px;
+      box-shadow:0 22px 60px rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.12);
+      max-height: calc(100svh - 40px - env(safe-area-inset-top));
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+
+    /* ✅ shorter header + smaller close */
+    .SEA_sheetHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:5px 10px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      min-height:44px;
+    }
+    .SEA_sheetTitle{
+      font-size:15px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .SEA_close{
+      all:unset;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:26px;
+      height:26px;
+      border-radius:14px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+    }
+
+    .SEA_sheetBody{
+      padding:12px;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+      flex:1;
+    }
+
+    .SEA_sheetNote{
+      font-size:12px;
+      color:rgba(255,255,255,.72);
+      margin:0 0 12px;
+      line-height:1.4;
+    }
+
+    .SEA_sheetGrid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    @media (max-width:520px){
+      .SEA_sheetGrid{ grid-template-columns:1fr; }
+    }
+
+    /* =========================
+       Slim buttons INSIDE sheet
+       ========================= */
+    .SEA_sheet a.btn{
+      padding:3px 10px;
+      gap:10px;
+      border-radius:16px;
+      box-shadow:0 10px 22px rgba(0,0,0,.22);
+    }
+    .SEA_sheet a.btn .icon{
+      width:28px;
+      height:28px;
+      border-radius:12px;
+    }
+    .SEA_sheet a.btn .icon svg{
+      width:16px;
+      height:16px;
+    }
+    .SEA_sheet a.btn .txt strong{
+      font-size:12px;
+      -webkit-line-clamp:2; /* keep inside sheet as 2 lines ok */
+    }
+    .SEA_sheet a.btn .txt span{
+      font-size:10px;
+    }
+
+    .resultsCard{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:18px;
+      background:rgba(255,255,255,.72);
+      box-shadow:0 10px 22px rgba(0,0,0,.08);
+      padding:10px 12px;
+      margin:12px 0;
+    }
+    .resultsCard .sectionTitle{ margin:2px 2px 8px; }
+
+    /* ✅ Search results: force title to 1 line */
+    #resultsGrid .txt strong{
+      -webkit-line-clamp:1;
+    }
+
+    /* =========================================================
+       LINK BUTTONS (super compact + always 3 per row)
+       ========================================================= */
+
+    /* ALWAYS 3-per-row for links (no mobile collapse) */
+    .grid.linksGrid{
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      margin-bottom:12px;
+    }
+    @media (max-width:520px){
+      .grid.linksGrid{
+        grid-template-columns:repeat(3, minmax(0,1fr));
+      }
+    }
+
+    /* Link title 1 line (already, but keep explicit) */
+    a.btn.linkBtn .txt strong{
+      -webkit-line-clamp:1;
+    }
+
+    /* SUPER COMPACT links (must beat the <=420px rule) */
+    a.btn.linkBtn{
+      border-radius:13px;
+      gap:4px;
+      padding:6px;
+    }
+    @media (max-width:420px){
+      a.btn.linkBtn{
+        gap:4px;
+        padding:6px;
+      }
+    }
+    
+    /* Link button font sizes only */
+a.btn.linkBtn .txt strong{
+  font-size:11px;   /* title */
+  line-height:1;
+}
+
+a.btn.linkBtn .txt span{
+  font-size:10px;   /* subtitle */
+  line-height:1;
+}
+
+
+    a.btn.linkBtn .icon{
+      width:18px;
+      height:18px;
+      border-radius:9px;
+    }
+    a.btn.linkBtn .icon svg{
+      width:12px;
+      height:12px;
+    }
+    
+    #clearSearch{
+  width:100%;
+  display:flex;   /* keep button layout */
+}
+
+.linkBtn .icon img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+/* More gap after the last link row (before Clear Search) */
+.grid.linksGrid{
+  margin-bottom:22px; /* was 12px */
+}
+
+
+
+
   </style>
 </head>
 
@@ -311,42 +599,33 @@
               <path d="M21 21l-4.35-4.35"></path>
             </svg>
             <input id="q" type="search" inputmode="search"
-                   placeholder="Search forms (A1, A2, U5, LOI…)" autocomplete="off" />
+                   placeholder="Search forms / tools / links…" autocomplete="off" />
           </div>
         </div>
       </div>
 
       <div class="content">
+
+        <!-- 1) NEWS TICKER -->
+        <div class="newsCard" id="newsCard">
+          <div class="newsTop">
+            <div class="lbl"><span class="dot"></span>Updates</div>
+            <div class="mini" id="newsMini">Latest notes</div>
+          </div>
+
+          <div class="ticker" aria-label="SEA updates ticker">
+            <div class="tickerTrack" id="tickerTrack"></div>
+          </div>
+        </div>
+
+        <!-- 2) TWO MAIN BUTTONS (always side-by-side) -->
         <div class="sectionTitle">
-          <div>SEA Compliance & Transaction Forms</div>
+          <div>Quick Access</div>
           <div id="count" style="color:#999;"></div>
         </div>
 
-        <div class="grid" id="grid">
-        
-          
-          <a class="btn" data-title="CDD Form Checker" data-sub="Which CDD forms are required?"
-   href="https://www.connectinghomes.sg/cdd-form-chekcer"
-   target="_blank" rel="noopener">
-  <div class="icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 3h10a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
-      <path d="M9 3h6v3H9z"/>
-      <path d="M8 10l1.5 1.5L12 9"/>
-      <path d="M8 14l1.5 1.5L12 13"/>
-      <path d="M14 10h4"/>
-      <path d="M14 14h4"/>
-    </svg>
-  </div>
-  <div class="txt">
-    <strong>CDD Form Checker</strong>
-    <span>Which forms do I need?</span>
-  </div>
-</a>
-
-
-          <a class="btn" data-title="A1 – Customer Particulars" data-sub="Individuals"
-             href="https://www.connectinghomes.sg/mltf-form-a1" target="_blank" rel="noopener">
+        <div class="quickRow">
+          <button class="btn" type="button" id="openForms">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -356,102 +635,243 @@
               </svg>
             </div>
             <div class="txt">
-              <strong>A1 – Customer Particulars</strong>
-              <span>Individuals</span>
+              <strong>All Forms</strong>
+              <span>A1, A2, U1, U5, LOI, Form B…</span>
             </div>
-          </a>
-          
-          
-          <a class="btn" data-title="A2 – Entity / Legal Arrangement" data-sub="Company / Trust"
-             href="https://www.connectinghomes.sg/mltf-form-a2" target="_blank" rel="noopener">
+          </button>
+
+          <button class="btn" type="button" id="openTools">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24">
-                <path d="M3 21h18"/>
-                <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
-                <path d="M9 21v-4h6v4"/>
-                <path d="M10 9h4"/>
-                <path d="M10 12h4"/>
+                <path d="M12 2v4"/>
+                <path d="M12 18v4"/>
+                <path d="M4.93 4.93l2.83 2.83"/>
+                <path d="M16.24 16.24l2.83 2.83"/>
+                <path d="M2 12h4"/>
+                <path d="M18 12h4"/>
+                <path d="M4.93 19.07l2.83-2.83"/>
+                <path d="M16.24 7.76l2.83-2.83"/>
+                <circle cx="12" cy="12" r="3.2"/>
               </svg>
             </div>
             <div class="txt">
-              <strong>A2 – Entity / Legal Arrangement</strong>
-              <span>Company / Trust</span>
+              <strong>All Tools</strong>
+              <span>CDD checker, calculators, helpers…</span>
             </div>
-          </a>
+          </button>
+        </div>
+
+        <!-- 3) LINKS + CLEAR -->
+        <div style="height:12px;"></div>
+
+        <div class="grid linksGrid">
 
 
-<a class="btn" data-title="Form U1 – Customer Particulars" data-sub="Individual"
-   href="https://www.connectinghomes.sg/mltf-form-u1"
-   target="_blank" rel="noopener">
-  <div class="icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24">
-      <!-- document -->
-      <path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/>
-      <path d="M15 2v4h4"/>
-      <circle cx="10" cy="11" r="2"/>
-      <path d="M7.5 16c0-1.7 5-1.7 5 0v1H7.5z"/>
-    </svg>
+<!-- ICA Website -->
+<a class="btn linkBtn"
+  href="https://eservices.ica.gov.sg/esvclandingpage/ecoa"
+   target="_blank"
+   rel="noopener">
+<div class="icon">
+<img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
   </div>
   <div class="txt">
-    <strong>U1 – Customer Particulars</strong>
-    <span>Unrepresented Counterparty</span>
+    <strong>Change of Address</strong>
+    <span>E-Services</span>
   </div>
 </a>
 
 
-          <a class="btn" data-title="U5 – Risk Screening Checklist" data-sub="UCP / Compliance"
-             href="https://www.connectinghomes.sg/mltf-form-u5" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6z"/>
-                <path d="M9 12l2 2 4-5"/>
-              </svg>
-            </div>
-            <div class="txt">
-              <strong>U5 – Risk Screening Checklist</strong>
-              <span>UCP / Compliance</span>
-            </div>
-          </a>
-
-         
-
-
-<a class="btn" data-title="Form B" data-sub="Form B / Compliance"
-   href="https://www.connectinghomes.sg/mltf-form-b" target="_blank" rel="noopener">
-  <div class="icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24">
-      <path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/>
-      <path d="M15 2v4h4"/>
-      <path d="M7.5 12.5l7-7 2 2-7 7-2.5.5.5-2.5z"/>
-      <path d="M13 6.5l2 2"/>
-    </svg>
+<!-- ICA Website -->
+<a class="btn linkBtn"
+  href="https://eservices.ica.gov.sg/ipienquiry/web/icheck/landing"
+   target="_blank"
+   rel="noopener">
+<div class="icon">
+<img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
   </div>
   <div class="txt">
-    <strong>Form B</strong>
-    <span>Risk Screening Checklist</span>
+    <strong>Verify NRIC</strong>
+    <span>E-Services</span>
+  </div>
+</a>
+
+<!-- ICA Website -->
+<a class="btn linkBtn"
+  href="https://www.ica.gov.sg/eservicesandforms"
+   target="_blank"
+   rel="noopener">
+<div class="icon">
+<img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
+  </div>
+  <div class="txt">
+    <strong>All E-Services</strong>
+    <span>Check Validity/Verify</span>
+  </div>
+</a>
+
+
+<!-- CPF Website -->
+<a class="btn linkBtn"
+   href="https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage"
+   target="_blank"
+   rel="noopener">
+<div class="icon">
+<img src="https://raw.githubusercontent.com/Davjuseth/sea/8a7d389f03c444c5ad169187bfcc7169b730eb07/logoscpf.png" alt="CPF Logo">
+  </div>
+  <div class="txt">
+    <strong>CPF Website</strong>
+    <span>Housing usage calculator</span>
+  </div>
+</a>
+
+<!-- CEA Website -->
+<a class="btn linkBtn"
+   href="https://www.cea.gov.sg/"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logoscea.png" alt="CEA Logo">
+  </div>
+  <div class="txt">
+    <strong>CEA Website</strong>
+    <span>Council for Estate Agencies</span>
+  </div>
+</a>
+
+
+<!-- HDB Portal -->
+<a class="btn linkBtn"
+   href="https://homes.hdb.gov.sg/home/landing"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logoshdb.png" alt="HDB Logo">
+  </div>
+  <div class="txt">
+    <strong>HDB Portal</strong>
+    <span>Flat Dashboard</span>
+  </div>
+</a>
+
+
+<!-- IRAS -->
+<a class="btn linkBtn"
+   href="https://mytax.iras.gov.sg/login/selection"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosiras.png" alt="IRAS Logo">
+  </div>
+  <div class="txt">
+    <strong>Stamp Duty</strong>
+    <span>myTax Portal</span>
+  </div>
+</a>
+
+
+<!-- INLIS -->
+<a class="btn linkBtn"
+href="https://app.sla.gov.sg/inlis/#/home"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://raw.githubusercontent.com/Davjuseth/sea/a9ee431a99f5d5fb5cc3916f32f7bebec18a30b4/logosilis.png" alt="Inlis Logo">
+  </div>
+  <div class="txt">
+    <strong>Inlis</strong>
+    <span>Check Property Ownership</span>
+  </div>
+</a>
+
+
+<!-- MOM -->
+<a class="btn linkBtn"
+href="https://www.mom.gov.sg/eservices/services/check-work-pass-and-application-status"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://github.com/Davjuseth/sea/blob/main/logosmom.png?raw=true" alt="Mom Logo">
+  </div>
+  <div class="txt">
+    <strong>MOM</strong>
+    <span>Check Workpass</span>
+  </div>
+</a>
+
+
+<!-- Singpost -->
+<a class="btn linkBtn"
+href="https://www.singpost.com/send-receive/receive-mail-parcel/mail-redirection-service"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/logossingpost.png" alt="Singpost Logo">
+  </div>
+  <div class="txt">
+    <strong>Singpost</strong>
+    <span>Mail Redirection Service</span>
+  </div>
+</a>
+
+
+<!-- SP App -->
+<a class="btn linkBtn"
+href="https://apps.apple.com/dk/app/sp-utilities-ev-charging/id596749130"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/logossp.png" alt="SP Logo">
+  </div>
+  <div class="txt">
+    <strong>SP App Download</strong>
+    <span>Mail Redirection Service</span>
+  </div>
+</a>
+
+
+<!-- SEA Home -->
+<a class="btn linkBtn"
+href="https://backend.singaporeestateagency.com/login"
+   target="_blank"
+   rel="noopener">
+  <div class="icon">
+    <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/icon-180.png" alt="SEA Logo">
+  </div>
+  <div class="txt">
+    <strong>SEA Login</strong>
+    <span>Agent Net</span>
   </div>
 </a>
 
 
 
- <a class="btn" data-title="Form 14 – LOI" data-sub="HDB / Private"
-             href="https://www.connectinghomes.sg/form-14-letter-of-intent" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 4h16v16H4z"/>
-                <path d="M8 8h8"/>
-                <path d="M8 12h8"/>
-                <path d="M8 16h6"/>
-              </svg>
-            </div>
-            <div class="txt">
-              <strong>Form 14 – LOI</strong>
-              <span>HDB / Private</span>
-            </div>
-          </a>
-          
+        </div>
 
+        <!-- SEARCH Section -->
+        <button class="btn" type="button" id="clearSearch">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 6h18"/>
+              <path d="M8 6V4h8v2"/>
+              <path d="M8 10v8"/>
+              <path d="M12 10v8"/>
+              <path d="M16 10v8"/>
+            </svg>
+          </div>
+          <div class="txt">
+            <strong>Clear Search</strong>
+            <span>Reset results</span>
+          </div>
+        </button>
 
+        <!-- SEARCH RESULTS -->
+        <div id="resultsWrap" class="resultsCard hidden">
+          <div class="sectionTitle">
+            <div>Search Results</div>
+            <div id="resultsCount" style="color:#999;"></div>
+          </div>
+          <div class="grid" id="resultsGrid"></div>
         </div>
 
         <div class="note">
@@ -459,36 +879,274 @@
           If the icon was wrong before, delete the old icon and add again.
         </div>
       </div>
+    </div>
+  </div>
 
+  <!-- MODALS (Forms + Tools only) -->
+  <div class="SEA_overlay" id="formsOverlay" aria-hidden="true">
+    <div class="SEA_sheet" role="dialog" aria-modal="true" aria-label="All Forms">
+      <div class="SEA_sheetHead">
+        <div class="SEA_sheetTitle">All Forms</div>
+        <button class="SEA_close" type="button" data-close="forms">✕</button>
+      </div>
+      <div class="SEA_sheetBody">
+        <p class="SEA_sheetNote">Tap any form to open. (Opens in new tab)</p>
+        <div class="SEA_sheetGrid" id="formsGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="SEA_overlay" id="toolsOverlay" aria-hidden="true">
+    <div class="SEA_sheet" role="dialog" aria-modal="true" aria-label="All Tools">
+      <div class="SEA_sheetHead">
+        <div class="SEA_sheetTitle">All Tools</div>
+        <button class="SEA_close" type="button" data-close="tools">✕</button>
+      </div>
+      <div class="SEA_sheetBody">
+        <p class="SEA_sheetNote">Tools & utilities (you can add more anytime).</p>
+        <div class="SEA_sheetGrid" id="toolsGrid"></div>
+      </div>
     </div>
   </div>
 
   <script>
-    // ✅ TEST MODE: keep service worker disabled
-    // if ("serviceWorker" in navigator) {
-    //   navigator.serviceWorker.register("/service-worker.js").catch(()=>{});
-    // }
 
+    /* DATA */
+    const NEWS = [
+      { tag:"NEW",  text:"CDD Form Checker updated (quick answers).", href:"https://www.connectinghomes.sg/cdd-form-chekcer" },
+      { tag:"TIP",  text:"Use Search to find A1/A2/U5 instantly.", href:"#"},
+      { tag:"NOTE", text:"If icon wrong: delete old icon, add again.", href:"#"}
+    ];
+
+    const FORMS = [
+      { title:"CDD Form Checker", sub:"Which forms do I need?", href:"https://www.connectinghomes.sg/cdd-form-chekcer",
+        icon:`<svg viewBox="0 0 24 24"><path d="M7 3h10a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 3h6v3H9z"/><path d="M8 10l1.5 1.5L12 9"/><path d="M8 14l1.5 1.5L12 13"/><path d="M14 10h4"/><path d="M14 14h4"/></svg>` },
+      { title:"A1 – Customer Particulars", sub:"Individuals", href:"https://www.connectinghomes.sg/mltf-form-a1",
+        icon:`<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></svg>` },
+      { title:"A2 – Entity / Legal Arrangement", sub:"Company / Trust", href:"https://www.connectinghomes.sg/mltf-form-a2",
+        icon:`<svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M9 21v-4h6v4"/><path d="M10 9h4"/><path d="M10 12h4"/></svg>` },
+      { title:"U1 – Customer Particulars", sub:"Unrepresented Counterparty", href:"https://www.connectinghomes.sg/mltf-form-u1",
+        icon:`<svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v4h4"/><circle cx="10" cy="11" r="2"/><path d="M7.5 16c0-1.7 5-1.7 5 0v1H7.5z"/></svg>` },
+      { title:"U5 – Risk Screening Checklist", sub:"UCP / Compliance", href:"https://www.connectinghomes.sg/mltf-form-u5",
+        icon:`<svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6z"/><path d="M9 12l2 2 4-5"/></svg>` },
+      { title:"Form B", sub:"Risk Screening Checklist", href:"https://www.connectinghomes.sg/mltf-form-b",
+        icon:`<svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v4h4"/><path d="M7.5 12.5l7-7 2 2-7 7-2.5.5.5-2.5z"/><path d="M13 6.5l2 2"/></svg>` },
+      { title:"Form 14 – LOI", sub:"HDB / Private", href:"https://www.connectinghomes.sg/form-14-letter-of-intent",
+        icon:`<svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h6"/></svg>` },
+    ];
+
+    const TOOLS = [
+      { title:"CDD Form Checker", sub:"Quickly decide required forms", href:"https://www.connectinghomes.sg/cdd-form-chekcer",
+        icon:`<svg viewBox="0 0 24 24"><path d="M7 3h10a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 3h6v3H9z"/><path d="M8 10l1.5 1.5L12 9"/><path d="M8 14l1.5 1.5L12 13"/><path d="M14 10h4"/><path d="M14 14h4"/></svg>` },
+       {
+  title:"Stamp Duty Calculator",
+  sub:"BSD & ABSD",
+  href:"https://www.connectinghomes.sg/stamp-duty-calculator",
+  icon:`<svg viewBox="0 0 24 24">
+          <path d="M12 2l8 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/>
+          <path d="M9 12h6"/>
+          <path d="M9 16h6"/>
+        </svg>`
+},
+{
+  title:"HDB Loan & CPF Limit Calculator",
+  sub:"Loan & CPF usage limit",
+  href:"https://www.connectinghomes.sg/hdb-loan-cpf-limit-calculator",
+  icon:`<svg viewBox="0 0 24 24">
+          <path d="M3 21h18"/>
+          <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
+          <path d="M9 21v-4h6v4"/>
+          <path d="M10 9h4"/>
+          <path d="M10 12h4"/>
+        </svg>`
+},
+{
+  title:"Financial Plan Calculator",
+  sub:"Estimate your housing budget",
+  href:"https://www.connectinghomes.sg/financial-plan-calculator",
+  icon:`<svg viewBox="0 0 24 24">
+          <path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"/>
+          <path d="M8 17v-6"/>
+          <path d="M12 17v-9"/>
+          <path d="M16 17v-3"/>
+        </svg>`
+}
+
+
+    ];
+
+    /* HELPERS */
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function makeBtn(item){
+      const a = document.createElement("a");
+      a.className = "btn";
+      a.href = item.href || "#";
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.setAttribute("data-title", item.title || "");
+      a.setAttribute("data-sub", item.sub || "");
+      a.innerHTML = `
+        <div class="icon" aria-hidden="true">${item.icon || ""}</div>
+        <div class="txt">
+          <strong>${escapeHtml(item.title || "")}</strong>
+          <span>${escapeHtml(item.sub || "")}</span>
+        </div>
+      `;
+      return a;
+    }
+
+    function renderGrid(el, items){
+      el.innerHTML = "";
+      items.forEach(it => el.appendChild(makeBtn(it)));
+    }
+
+    /* TICKER */
+    function renderTicker(){
+      const track = document.getElementById("tickerTrack");
+      const mini = document.getElementById("newsMini");
+      if(!track) return;
+
+      const parts = NEWS.map(n => {
+        const href = n.href && n.href !== "#" ? n.href : null;
+        const tag = n.tag ? `<span class="pill">${escapeHtml(n.tag)}</span>` : "";
+        const text = escapeHtml(n.text || "");
+        return href
+          ? `<a class="tickItem" href="${href}" target="_blank" rel="noopener">${tag}<span>${text}</span></a>`
+          : `<span class="tickItem">${tag}<span>${text}</span></span>`;
+      });
+
+      track.innerHTML = parts.join("") + parts.join("");
+      if(mini) mini.textContent = (NEWS[0] && NEWS[0].text) ? NEWS[0].text : "Latest notes";
+      if(NEWS.length <= 2) track.style.animationDuration = "40s";
+    }
+
+    /* SHEETS */
+    let _scrollY = 0;
+
+    function lockBody(){
+      _scrollY = window.scrollY || 0;
+      document.body.classList.add("SEA_lock");
+      document.body.style.top = (-_scrollY) + "px";
+    }
+
+    function unlockBody(){
+      document.body.classList.remove("SEA_lock");
+      const y = _scrollY || 0;
+      document.body.style.top = "";
+      window.scrollTo(0, y);
+    }
+
+    function openSheet(which){
+      const overlay = document.getElementById(which + "Overlay");
+      if(!overlay) return;
+      overlay.classList.add("SEA_active");
+      overlay.setAttribute("aria-hidden","false");
+      lockBody();
+    }
+
+    function closeSheet(which){
+      const overlay = document.getElementById(which + "Overlay");
+      if(!overlay) return;
+      overlay.classList.remove("SEA_active");
+      overlay.setAttribute("aria-hidden","true");
+      unlockBody();
+    }
+
+    function bindSheets(){
+      document.getElementById("openForms").addEventListener("click", ()=>openSheet("forms"));
+      document.getElementById("openTools").addEventListener("click", ()=>openSheet("tools"));
+
+      document.querySelectorAll(".SEA_close").forEach(btn=>{
+        btn.addEventListener("click", ()=>closeSheet(btn.getAttribute("data-close")));
+      });
+
+      document.querySelectorAll(".SEA_overlay").forEach(ov=>{
+        ov.addEventListener("click", (e)=>{
+          if(e.target !== ov) return;
+          if(ov.id === "formsOverlay") closeSheet("forms");
+          if(ov.id === "toolsOverlay") closeSheet("tools");
+        });
+      });
+
+      window.addEventListener("keydown", (e)=>{
+        if(e.key !== "Escape") return;
+        ["forms","tools"].forEach(k=>{
+          const ov = document.getElementById(k+"Overlay");
+          if(ov && ov.classList.contains("SEA_active")) closeSheet(k);
+        });
+      });
+    }
+
+    /* SEARCH */
     const q = document.getElementById("q");
     const count = document.getElementById("count");
-    const allLinks = Array.from(document.querySelectorAll("#grid a.btn"));
+    const resultsWrap = document.getElementById("resultsWrap");
+    const resultsGrid = document.getElementById("resultsGrid");
+    const resultsCount = document.getElementById("resultsCount");
+    const clearSearchBtn = document.getElementById("clearSearch");
+
+    // still searchable even though Useful Links button is direct link
+    const LINKS = [
+      { title:"ConnectingHomes (Main Site)", sub:"Homepage", href:"https://www.connectinghomes.sg",
+        icon:`<svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg>` },
+      { title:"SEA App Home", sub:"seaapp.pages.dev", href:"https://seaapp.pages.dev/",
+        icon:`<svg viewBox="0 0 24 24"><path d="M12 2l8 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><path d="M9 22V12h6v10"/></svg>` },
+    ];
+
+    const ALL = [
+      ...FORMS.map(x => ({...x, _type:"Form"})),
+      ...TOOLS.map(x => ({...x, _type:"Tool"})),
+      ...LINKS.map(x => ({...x, _type:"Link"})),
+    ];
 
     function applySearch(){
       const term = (q.value || "").trim().toLowerCase();
-      let visible = 0;
 
-      allLinks.forEach(a => {
-        const t = (a.getAttribute("data-title") || a.textContent || "").toLowerCase();
-        const s = (a.getAttribute("data-sub") || "").toLowerCase();
-        const ok = !term || t.includes(term) || s.includes(term);
-        a.classList.toggle("hidden", !ok);
-        if (ok) visible++;
+      if(!term){
+        resultsWrap.classList.add("hidden");
+        resultsGrid.innerHTML = "";
+        resultsCount.textContent = "";
+        count.textContent = `${FORMS.length} forms • ${TOOLS.length} tools • ${LINKS.length} links`;
+        return;
+      }
+
+      const matches = ALL.filter(it=>{
+        const t = (it.title || "").toLowerCase();
+        const s = (it.sub || "").toLowerCase();
+        return t.includes(term) || s.includes(term);
       });
 
-      count.textContent = term ? `${visible} match${visible===1 ? "" : "es"}` : `${allLinks.length} items`;
+      resultsWrap.classList.remove("hidden");
+      resultsGrid.innerHTML = "";
+      matches.forEach(it=>{
+        resultsGrid.appendChild(makeBtn({ ...it, sub: `${it._type} • ${it.sub || ""}`.trim() }));
+      });
+
+      resultsCount.textContent = `${matches.length} match${matches.length===1?"":"es"}`;
+      count.textContent = `${matches.length} match${matches.length===1?"":"es"}`;
     }
 
+    clearSearchBtn.addEventListener("click", ()=>{
+      q.value = "";
+      q.blur();
+      applySearch();
+    });
+
     q.addEventListener("input", applySearch);
+
+    /* INIT */
+    renderTicker();
+    renderGrid(document.getElementById("formsGrid"), FORMS);
+    renderGrid(document.getElementById("toolsGrid"), TOOLS);
+    bindSheets();
     applySearch();
   </script>
 </body>
