@@ -532,18 +532,16 @@
         padding:6px;
       }
     }
-    
+
     /* Link button font sizes only */
-a.btn.linkBtn .txt strong{
-  font-size:11px;   /* title */
-  line-height:1;
-}
-
-a.btn.linkBtn .txt span{
-  font-size:10px;   /* subtitle */
-  line-height:1;
-}
-
+    a.btn.linkBtn .txt strong{
+      font-size:11px;   /* title */
+      line-height:1;
+    }
+    a.btn.linkBtn .txt span{
+      font-size:10px;   /* subtitle */
+      line-height:1;
+    }
 
     a.btn.linkBtn .icon{
       width:18px;
@@ -554,27 +552,23 @@ a.btn.linkBtn .txt span{
       width:12px;
       height:12px;
     }
-    
+
     #clearSearch{
-  width:100%;
-  display:flex;   /* keep button layout */
-}
+      width:100%;
+      display:flex;   /* keep button layout */
+    }
 
-.linkBtn .icon img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-}
+    .linkBtn .icon img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
 
-/* More gap after the last link row (before Clear Search) */
-.grid.linksGrid{
-  margin-bottom:22px; /* was 12px */
-}
-
-
-
-
+    /* More gap after the last link row (before Clear Search) */
+    .grid.linksGrid{
+      margin-bottom:22px; /* was 12px */
+    }
   </style>
 </head>
 
@@ -664,187 +658,196 @@ a.btn.linkBtn .txt span{
         <!-- 3) LINKS + CLEAR -->
         <div style="height:12px;"></div>
 
+        <!-- ✅ NEW: Quick Link title above link buttons -->
+        <div class="sectionTitle">
+          <div>Quick Link</div>
+          <div></div>
+        </div>
+
         <div class="grid linksGrid">
 
+          <!-- ICA Website -->
+          <a class="btn linkBtn"
+             href="https://eservices.ica.gov.sg/esvclandingpage/ecoa"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
+            </div>
+            <div class="txt">
+              <strong>Change of Address</strong>
+              <span>E-Services</span>
+            </div>
+          </a>
 
-<!-- ICA Website -->
-<a class="btn linkBtn"
-  href="https://eservices.ica.gov.sg/esvclandingpage/ecoa"
-   target="_blank"
-   rel="noopener">
-<div class="icon">
-<img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
-  </div>
-  <div class="txt">
-    <strong>Change of Address</strong>
-    <span>E-Services</span>
-  </div>
-</a>
+          <!-- ICA Website -->
+          <a class="btn linkBtn"
+             href="https://eservices.ica.gov.sg/ipienquiry/web/icheck/landing"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
+            </div>
+            <div class="txt">
+              <strong>Verify NRIC</strong>
+              <span>E-Services</span>
+            </div>
+          </a>
 
+          <!-- ICA Website -->
+          <a class="btn linkBtn"
+             href="https://www.ica.gov.sg/eservicesandforms"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
+            </div>
+            <div class="txt">
+              <strong>All E-Services</strong>
+              <span>Check Validity/Verify</span>
+            </div>
+          </a>
 
-<!-- ICA Website -->
-<a class="btn linkBtn"
-  href="https://eservices.ica.gov.sg/ipienquiry/web/icheck/landing"
-   target="_blank"
-   rel="noopener">
-<div class="icon">
-<img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
-  </div>
-  <div class="txt">
-    <strong>Verify NRIC</strong>
-    <span>E-Services</span>
-  </div>
-</a>
+          <!-- CPF Website -->
+          <a class="btn linkBtn"
+             href="https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/8a7d389f03c444c5ad169187bfcc7169b730eb07/logoscpf.png" alt="CPF Logo">
+            </div>
+            <div class="txt">
+              <strong>CPF Website</strong>
+              <span>Housing usage calculator</span>
+            </div>
+          </a>
 
-<!-- ICA Website -->
-<a class="btn linkBtn"
-  href="https://www.ica.gov.sg/eservicesandforms"
-   target="_blank"
-   rel="noopener">
-<div class="icon">
-<img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosica.png" alt="ICA Logo">
-  </div>
-  <div class="txt">
-    <strong>All E-Services</strong>
-    <span>Check Validity/Verify</span>
-  </div>
-</a>
+          <!-- CEA Website -->
+          <a class="btn linkBtn"
+             href="https://www.cea.gov.sg/"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logoscea.png" alt="CEA Logo">
+            </div>
+            <div class="txt">
+              <strong>CEA Website</strong>
+              <span>Council for Estate Agencies</span>
+            </div>
+          </a>
 
+          <!-- HDB Portal -->
+          <a class="btn linkBtn"
+             href="https://homes.hdb.gov.sg/home/landing"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logoshdb.png" alt="HDB Logo">
+            </div>
+            <div class="txt">
+              <strong>HDB Portal</strong>
+              <span>Flat Dashboard</span>
+            </div>
+          </a>
 
-<!-- CPF Website -->
-<a class="btn linkBtn"
-   href="https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage"
-   target="_blank"
-   rel="noopener">
-<div class="icon">
-<img src="https://raw.githubusercontent.com/Davjuseth/sea/8a7d389f03c444c5ad169187bfcc7169b730eb07/logoscpf.png" alt="CPF Logo">
-  </div>
-  <div class="txt">
-    <strong>CPF Website</strong>
-    <span>Housing usage calculator</span>
-  </div>
-</a>
+          <!-- IRAS -->
+          <a class="btn linkBtn"
+             href="https://mytax.iras.gov.sg/login/selection"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosiras.png" alt="IRAS Logo">
+            </div>
+            <div class="txt">
+              <strong>Stamp Duty</strong>
+              <span>myTax Portal</span>
+            </div>
+          </a>
 
-<!-- CEA Website -->
-<a class="btn linkBtn"
-   href="https://www.cea.gov.sg/"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logoscea.png" alt="CEA Logo">
-  </div>
-  <div class="txt">
-    <strong>CEA Website</strong>
-    <span>Council for Estate Agencies</span>
-  </div>
-</a>
+          <!-- INLIS -->
+          <a class="btn linkBtn"
+             href="https://app.sla.gov.sg/inlis/#/home"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/a9ee431a99f5d5fb5cc3916f32f7bebec18a30b4/logosilis.png" alt="Inlis Logo">
+            </div>
+            <div class="txt">
+              <strong>Inlis</strong>
+              <span>Check Property Ownership</span>
+            </div>
+          </a>
 
+          <!-- MOM -->
+          <a class="btn linkBtn"
+             href="https://www.mom.gov.sg/eservices/services/check-work-pass-and-application-status"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://github.com/Davjuseth/sea/blob/main/logosmom.png?raw=true" alt="Mom Logo">
+            </div>
+            <div class="txt">
+              <strong>MOM</strong>
+              <span>Check Workpass</span>
+            </div>
+          </a>
 
-<!-- HDB Portal -->
-<a class="btn linkBtn"
-   href="https://homes.hdb.gov.sg/home/landing"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logoshdb.png" alt="HDB Logo">
-  </div>
-  <div class="txt">
-    <strong>HDB Portal</strong>
-    <span>Flat Dashboard</span>
-  </div>
-</a>
+          <!-- Singpost -->
+          <a class="btn linkBtn"
+             href="https://www.singpost.com/send-receive/receive-mail-parcel/mail-redirection-service"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/logossingpost.png" alt="Singpost Logo">
+            </div>
+            <div class="txt">
+              <strong>Singpost</strong>
+              <span>Mail Redirection Service</span>
+            </div>
+          </a>
 
+          <!-- SP App -->
+          <a class="btn linkBtn"
+             href="https://apps.apple.com/dk/app/sp-utilities-ev-charging/id596749130"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/logossp.png" alt="SP Logo">
+            </div>
+            <div class="txt">
+              <strong>SP App Download</strong>
+              <span>Mail Redirection Service</span>
+            </div>
+          </a>
 
-<!-- IRAS -->
-<a class="btn linkBtn"
-   href="https://mytax.iras.gov.sg/login/selection"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logosiras.png" alt="IRAS Logo">
-  </div>
-  <div class="txt">
-    <strong>Stamp Duty</strong>
-    <span>myTax Portal</span>
-  </div>
-</a>
-
-
-<!-- INLIS -->
-<a class="btn linkBtn"
-href="https://app.sla.gov.sg/inlis/#/home"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://raw.githubusercontent.com/Davjuseth/sea/a9ee431a99f5d5fb5cc3916f32f7bebec18a30b4/logosilis.png" alt="Inlis Logo">
-  </div>
-  <div class="txt">
-    <strong>Inlis</strong>
-    <span>Check Property Ownership</span>
-  </div>
-</a>
-
-
-<!-- MOM -->
-<a class="btn linkBtn"
-href="https://www.mom.gov.sg/eservices/services/check-work-pass-and-application-status"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://github.com/Davjuseth/sea/blob/main/logosmom.png?raw=true" alt="Mom Logo">
-  </div>
-  <div class="txt">
-    <strong>MOM</strong>
-    <span>Check Workpass</span>
-  </div>
-</a>
-
-
-<!-- Singpost -->
-<a class="btn linkBtn"
-href="https://www.singpost.com/send-receive/receive-mail-parcel/mail-redirection-service"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/logossingpost.png" alt="Singpost Logo">
-  </div>
-  <div class="txt">
-    <strong>Singpost</strong>
-    <span>Mail Redirection Service</span>
-  </div>
-</a>
-
-
-<!-- SP App -->
-<a class="btn linkBtn"
-href="https://apps.apple.com/dk/app/sp-utilities-ev-charging/id596749130"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/logossp.png" alt="SP Logo">
-  </div>
-  <div class="txt">
-    <strong>SP App Download</strong>
-    <span>Mail Redirection Service</span>
-  </div>
-</a>
-
-
-<!-- SEA Home -->
-<a class="btn linkBtn"
-href="https://backend.singaporeestateagency.com/login"
-   target="_blank"
-   rel="noopener">
-  <div class="icon">
-    <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/icon-180.png" alt="SEA Logo">
-  </div>
-  <div class="txt">
-    <strong>SEA Login</strong>
-    <span>Agent Net</span>
-  </div>
-</a>
-
-
+          <!-- SEA Home -->
+          <a class="btn linkBtn"
+             href="https://backend.singaporeestateagency.com/login"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/refs/heads/main/icon-180.png" alt="SEA Logo">
+            </div>
+            <div class="txt">
+              <strong>SEA Login</strong>
+              <span>Agent Net</span>
+            </div>
+          </a>
+          
+           <!-- HDB Price -->
+          <a class="btn linkBtn"
+             href="https://services2.hdb.gov.sg/webapp/BB33RTIS/BB33PReslTrans.jsp"
+             target="_blank"
+             rel="noopener">
+            <div class="icon">
+              <img src="https://raw.githubusercontent.com/Davjuseth/sea/549e45f306395bedf83f4990de70550f2d29a808/logoshdb.png" alt="HDB Logo">
+            </div>
+            <div class="txt">
+              <strong>HDB Resale Price</strong>
+              <span>Transactions</span>
+            </div>
+          </a>
+          
 
         </div>
 
@@ -910,7 +913,6 @@ href="https://backend.singaporeestateagency.com/login"
   </div>
 
   <script>
-
     /* DATA */
     const NEWS = [
       { tag:"NEW",  text:"CDD Form Checker updated (quick answers).", href:"https://www.connectinghomes.sg/cdd-form-chekcer" },
@@ -938,38 +940,61 @@ href="https://backend.singaporeestateagency.com/login"
     const TOOLS = [
       { title:"CDD Form Checker", sub:"Quickly decide required forms", href:"https://www.connectinghomes.sg/cdd-form-chekcer",
         icon:`<svg viewBox="0 0 24 24"><path d="M7 3h10a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 3h6v3H9z"/><path d="M8 10l1.5 1.5L12 9"/><path d="M8 14l1.5 1.5L12 13"/><path d="M14 10h4"/><path d="M14 14h4"/></svg>` },
-       {
-  title:"Stamp Duty Calculator",
-  sub:"BSD & ABSD",
-  href:"https://www.connectinghomes.sg/stamp-duty-calculator",
-  icon:`<svg viewBox="0 0 24 24">
-          <path d="M12 2l8 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/>
-          <path d="M9 12h6"/>
-          <path d="M9 16h6"/>
-        </svg>`
-},
-{
-  title:"HDB Loan & CPF Limit Calculator",
-  sub:"Loan & CPF usage limit",
-  href:"https://www.connectinghomes.sg/hdb-loan-cpf-limit-calculator",
+      {
+        title:"Stamp Duty Calculator",
+        sub:"BSD & ABSD",
+        href:"https://www.connectinghomes.sg/stamp-duty-calculator",
+        icon:`<svg viewBox="0 0 24 24">
+                <path d="M12 2l8 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/>
+                <path d="M9 12h6"/>
+                <path d="M9 16h6"/>
+              </svg>`
+      },
+      {
+        title:"HDB Loan & CPF Limit Calculator",
+        sub:"Loan & CPF usage limit",
+        href:"https://www.connectinghomes.sg/hdb-loan-cpf-limit-calculator",
+        icon:`<svg viewBox="0 0 24 24">
+                <path d="M3 21h18"/>
+                <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
+                <path d="M9 21v-4h6v4"/>
+                <path d="M10 9h4"/>
+                <path d="M10 12h4"/>
+              </svg>`
+      },
+      {
+        title:"Financial Plan Calculator",
+        sub:"Estimate your housing budget",
+        href:"https://www.connectinghomes.sg/financial-plan-calculator",
+        icon:`<svg viewBox="0 0 24 24">
+                <path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"/>
+                <path d="M8 17v-6"/>
+                <path d="M12 17v-9"/>
+                <path d="M16 17v-3"/>
+              </svg>`
+      },
+      {
+  title:"Mortgage Calculator",
+  sub:"Monthly repayment estimate",
+  href:"https://www.connectinghomes.sg/mortgage-calculator",
   icon:`<svg viewBox="0 0 24 24">
           <path d="M3 21h18"/>
-          <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
-          <path d="M9 21v-4h6v4"/>
-          <path d="M10 9h4"/>
-          <path d="M10 12h4"/>
+          <path d="M5 21V9l7-5 7 5v12"/>
+          <path d="M9 21v-6h6v6"/>
+          <path d="M10 11h4"/>
         </svg>`
 },
 {
-  title:"Financial Plan Calculator",
-  sub:"Estimate your housing budget",
-  href:"https://www.connectinghomes.sg/financial-plan-calculator",
-  icon:`<svg viewBox="0 0 24 24">
-          <path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"/>
-          <path d="M8 17v-6"/>
-          <path d="M12 17v-9"/>
-          <path d="M16 17v-3"/>
-        </svg>`
+  title: "Sales Proceeds Estimator",
+  sub: "Estimate net cash proceeds",
+  href: "https://www.connectinghomes.sg/sales-proceeds-estimator",
+  icon: `<svg viewBox="0 0 24 24">
+           <path d="M3 21h18"/>
+           <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
+           <path d="M9 17h6"/>
+           <path d="M9 13h6"/>
+           <path d="M9 9h6"/>
+         </svg>`
 }
 
 
