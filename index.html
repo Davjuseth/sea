@@ -945,35 +945,35 @@
   <script>
     /* DATA */
     const NEWS = [
-      { tag:"NEW",  text:"CDD Form Checker updated (quick answers).", href:"https://www.connectinghomes.sg/cdd-form-chekcer" },
+      { tag:"NEW",  text:"CDD Form Checker updated (quick answers).", href:"https://www.sea-sg.com/cdd-form-chekcer" },
       { tag:"TIP",  text:"Use Search to find A1/A2/U5 instantly.", href:"#"},
       { tag:"NOTE", text:"If icon wrong: delete old icon, add again.", href:"#"}
     ];
 
     const FORMS = [
-      { title:"CDD Form Checker", sub:"Which forms do I need?", href:"https://www.connectinghomes.sg/cdd-form-chekcer",
+      { title:"CDD Form Checker", sub:"Which forms do I need?", href:"https://www.sea-sg.com/cdd-form-chekcer",
         icon:`<svg viewBox="0 0 24 24"><path d="M7 3h10a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 3h6v3H9z"/><path d="M8 10l1.5 1.5L12 9"/><path d="M8 14l1.5 1.5L12 13"/><path d="M14 10h4"/><path d="M14 14h4"/></svg>` },
-      { title:"A1 – Customer Particulars", sub:"Individuals", href:"https://www.connectinghomes.sg/mltf-form-a1",
+      { title:"A1 – Customer Particulars", sub:"Individuals", href:"https://www.sea-sg.com/mltf-form-a1",
         icon:`<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></svg>` },
-      { title:"A2 – Entity / Legal Arrangement", sub:"Company / Trust", href:"https://www.connectinghomes.sg/mltf-form-a2",
+      { title:"A2 – Entity / Legal Arrangement", sub:"Company / Trust", href:"https://www.sea-sg.com/mltf-form-a2",
         icon:`<svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M9 21v-4h6v4"/><path d="M10 9h4"/><path d="M10 12h4"/></svg>` },
-      { title:"U1 – Customer Particulars", sub:"Unrepresented Counterparty", href:"https://www.connectinghomes.sg/mltf-form-u1",
+      { title:"U1 – Customer Particulars", sub:"Unrepresented Counterparty", href:"https://www.sea-sg.com/mltf-form-u1",
         icon:`<svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v4h4"/><circle cx="10" cy="11" r="2"/><path d="M7.5 16c0-1.7 5-1.7 5 0v1H7.5z"/></svg>` },
-      { title:"U5 – Risk Screening Checklist", sub:"UCP / Compliance", href:"https://www.connectinghomes.sg/mltf-form-u5",
+      { title:"U5 – Risk Screening Checklist", sub:"UCP / Compliance", href:"https://www.sea-sg.com/mltf-form-u5",
         icon:`<svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6z"/><path d="M9 12l2 2 4-5"/></svg>` },
-      { title:"Form B", sub:"Risk Screening Checklist", href:"https://www.connectinghomes.sg/mltf-form-b",
+      { title:"Form B", sub:"Risk Screening Checklist", href:"https://www.sea-sg.com/mltf-form-b",
         icon:`<svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v4h4"/><path d="M7.5 12.5l7-7 2 2-7 7-2.5.5.5-2.5z"/><path d="M13 6.5l2 2"/></svg>` },
-      { title:"Form 14 – LOI", sub:"HDB / Private", href:"https://www.connectinghomes.sg/form-14-letter-of-intent",
+      { title:"Form 14 – LOI", sub:"HDB / Private", href:"https://www.sea-sg.com/form-14-letter-of-intent",
         icon:`<svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h6"/></svg>` },
     ];
 
     const TOOLS = [
-      { title:"CPF Full Retirement Sum Checker", sub:"Quickly decide required forms", href:"https://www.connectinghomes.sg/cpf-full-retirement-sum-calculator",
+      { title:"CPF Full Retirement Sum Checker", sub:"FRS BRS Checker", href:"https://www.sea-sg.com/cpf-full-retirement-sum-calculator",
         icon:`<svg viewBox="0 0 24 24"><path d="M7 3h10a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 3h6v3H9z"/><path d="M8 10l1.5 1.5L12 9"/><path d="M8 14l1.5 1.5L12 13"/><path d="M14 10h4"/><path d="M14 14h4"/></svg>` },
       {
         title:"Stamp Duty Calculator",
         sub:"BSD & ABSD",
-        href:"https://www.connectinghomes.sg/stamp-duty-calculator",
+        href:"https://www.sea-sg.com/stamp-duty-calculator",
         icon:`<svg viewBox="0 0 24 24">
                 <path d="M12 2l8 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/>
                 <path d="M9 12h6"/>
@@ -983,7 +983,7 @@
       {
         title:"HDB Loan & CPF Limit Calculator",
         sub:"Loan & CPF usage limit",
-        href:"https://www.connectinghomes.sg/hdb-loan-cpf-limit-calculator",
+        href:"https://www.sea-sg.com/hdb-loan-cpf-limit-calculator",
         icon:`<svg viewBox="0 0 24 24">
                 <path d="M3 21h18"/>
                 <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
@@ -995,7 +995,7 @@
       {
         title:"Financial Plan Calculator",
         sub:"Estimate your housing budget",
-        href:"https://www.connectinghomes.sg/financial-plan-calculator",
+        href:"https://www.sea-sg.com/financial-plan-calculator",
         icon:`<svg viewBox="0 0 24 24">
                 <path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"/>
                 <path d="M8 17v-6"/>
@@ -1006,7 +1006,7 @@
       {
   title:"Mortgage Calculator",
   sub:"Monthly repayment estimate",
-  href:"https://www.connectinghomes.sg/mortgage-calculator",
+  href:"https://www.sea-sg.com/mortgage-calculator",
   icon:`<svg viewBox="0 0 24 24">
           <path d="M3 21h18"/>
           <path d="M5 21V9l7-5 7 5v12"/>
@@ -1017,7 +1017,7 @@
 {
   title: "Sales Proceeds Estimator",
   sub: "Estimate net cash proceeds",
-  href: "https://www.connectinghomes.sg/sales-proceeds-estimator",
+  href: "https://www.sea-sg.com/sales-proceeds-estimator",
   icon: `<svg viewBox="0 0 24 24">
            <path d="M3 21h18"/>
            <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
@@ -1206,6 +1206,7 @@
   </script>
 </body>
 </html>
+
 
 
 
