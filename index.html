@@ -282,89 +282,6 @@
     }
 
     /* =========================
-       1) NEWS TICKER (Section 1)
-       ========================= */
-    .newsCard{
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:18px;
-      background:rgba(255,255,255,.72);
-      box-shadow:0 10px 22px rgba(0,0,0,.08);
-      overflow:hidden;
-      padding:10px 12px;
-      margin-bottom:12px;
-    }
-    .newsTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:8px;
-    }
-    .newsTop .lbl{
-      font-size:13px;
-      color:rgba(0,0,0,.70);
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-weight:600;
-    }
-    .dot{
-      width:8px; height:8px;
-      border-radius:999px;
-      background:#22c55e;
-      box-shadow:0 0 0 4px rgba(34,197,94,.18);
-      flex:0 0 auto;
-    }
-    .newsTop .mini{
-      font-size:12px;
-      color:rgba(0,0,0,.55);
-      white-space:nowrap;
-    }
-
-    .ticker{
-      position:relative;
-      overflow:hidden;
-      border-radius:14px;
-      background:rgba(255,255,255,.85);
-      border:1px solid rgba(0,0,0,.08);
-    }
-    .tickerTrack{
-      display:flex;
-      gap:18px;
-      padding:10px 12px;
-      width:max-content;
-      animation: tickerMove 28s linear infinite;
-      will-change: transform;
-    }
-    .ticker:hover .tickerTrack{ animation-play-state:paused; }
-    .ticker:active .tickerTrack{ animation-play-state:paused; }
-
-    .tickItem{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size:13px;
-      color:rgba(0,0,0,.78);
-      white-space:nowrap;
-      text-decoration:none;
-    }
-    .pill{
-      font-size:11px;
-      padding:3px 8px;
-      border-radius:999px;
-      background:rgba(231,201,107,.35);
-      border:1px solid rgba(139,107,18,.18);
-      color:#6b520d;
-      font-weight:700;
-      flex:0 0 auto;
-    }
-
-    @keyframes tickerMove{
-      0%{ transform:translateX(0); }
-      100%{ transform:translateX(-50%); }
-    }
-
-    /* =========================
        MODAL SHEET (Containers)
        ========================= */
     body.SEA_lock{
@@ -523,7 +440,7 @@
       border-radius:13px;
       gap:4px;
       padding:6px;
-    height: 50px;
+      height: 50px;
     }
     @media (max-width:420px){
       a.btn.linkBtn{
@@ -568,6 +485,140 @@
     .grid.linksGrid{
       margin-bottom:22px; /* was 12px */
     }
+
+    /* =========================
+       EPNEWS – SEA Gold Style
+       ========================= */
+    .EPNEWS_scope{
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+      margin-bottom:12px;
+    }
+
+    .EPNEWS_wrap{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:18px;
+      background:rgba(255,255,255,.72);
+      box-shadow:0 10px 22px rgba(0,0,0,.08);
+      padding:10px 12px;
+    }
+
+    .EPNEWS_head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+    }
+
+    .EPNEWS_title{
+      font-size:13px;
+      color:rgba(0,0,0,.70);
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+
+    .EPNEWS_controls{ display:flex; gap:6px; }
+
+    .EPNEWS_btn{
+      all:unset;
+      width:26px;
+      height:26px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow:0 8px 18px rgba(0,0,0,.10);
+    }
+
+    .EPNEWS_icon{
+      width:18px;
+      height:18px;
+      stroke:#8b6b12;
+      stroke-width:2.4;
+      fill:none;
+    }
+
+    .EPNEWS_carousel{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      padding-bottom:2px;
+    }
+
+    .EPNEWS_card{
+      min-width:200px;
+      max-width:200px;
+      border-radius:16px;
+      overflow:hidden;
+      text-decoration:none;
+      color:inherit;
+      flex:0 0 auto;
+
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 10px 22px rgba(0,0,0,.08);
+
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+
+    .EPNEWS_card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px rgba(0,0,0,.12);
+    }
+
+    .EPNEWS_img{
+      width:100%;
+      height:80px;
+      object-fit:cover;
+      display:block;
+      background:#ddd;
+    }
+
+    .EPNEWS_body{
+      padding:8px 10px 10px;
+    }
+
+    .EPNEWS_date{
+      font-size:11px;
+      color:rgba(0,0,0,.55);
+      margin:0 0 4px 0;
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+    }
+
+    .EPNEWS_src{
+      font-size:10px;
+      padding:2px 6px;
+      border-radius:999px;
+      background:rgba(231,201,107,.35);
+      border:1px solid rgba(139,107,18,.18);
+      color:#6b520d;
+      font-weight:700;
+    }
+
+    .EPNEWS_titleTxt{
+      font-weight:600;
+      font-size:13px;
+      line-height:1.25;
+      margin:0;
+      color:#111;
+
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .EPNEWS_loading{
+      font-size:12px;
+      color:rgba(0,0,0,.55);
+      padding:6px 2px;
+    }
   </style>
 </head>
 
@@ -599,15 +650,32 @@
 
       <div class="content">
 
-        <!-- 1) NEWS TICKER -->
-        <div class="newsCard" id="newsCard">
-          <div class="newsTop">
-            <div class="lbl"><span class="dot"></span>Updates</div>
-            <div class="mini" id="newsMini">Latest notes</div>
-          </div>
+        <!-- 1) PROPERTY NEWS (EPNEWS Carousel) -->
+        <div class="EPNEWS_scope">
+          <div class="EPNEWS_wrap">
 
-          <div class="ticker" aria-label="SEA updates ticker">
-            <div class="tickerTrack" id="tickerTrack"></div>
+            <div class="EPNEWS_head">
+              <div class="EPNEWS_title">Latest Property News</div>
+
+              <div class="EPNEWS_controls">
+                <button class="EPNEWS_btn" type="button" data-dir="-1" aria-label="Scroll left">
+                  <svg class="EPNEWS_icon" viewBox="0 0 24 24">
+                    <path d="M15 6l-6 6 6 6"/>
+                  </svg>
+                </button>
+
+                <button class="EPNEWS_btn" type="button" data-dir="1" aria-label="Scroll right">
+                  <svg class="EPNEWS_icon" viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div id="EPNEWS_carousel" class="EPNEWS_carousel">
+              <div class="EPNEWS_loading">Loading…</div>
+            </div>
+
           </div>
         </div>
 
@@ -654,9 +722,7 @@
           </button>
         </div>
 
-       
-
-        <!-- ✅ NEW: Quick Link title above link buttons -->
+        <!-- Quick Link title -->
         <div class="sectionTitle">
           <div>Quick Link</div>
           <div></div>
@@ -678,7 +744,6 @@
             </div>
           </a>
 
-          <!-- ICA Website -->
           <a class="btn linkBtn"
              href="https://eservices.ica.gov.sg/ipienquiry/web/icheck/landing"
              target="_blank"
@@ -692,7 +757,6 @@
             </div>
           </a>
 
-          <!-- ICA Website -->
           <a class="btn linkBtn"
              href="https://www.ica.gov.sg/eservicesandforms"
              target="_blank"
@@ -706,7 +770,6 @@
             </div>
           </a>
 
-          <!-- CPF Website -->
           <a class="btn linkBtn"
              href="https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage"
              target="_blank"
@@ -720,7 +783,6 @@
             </div>
           </a>
 
-          <!-- CEA Website -->
           <a class="btn linkBtn"
              href="https://www.cea.gov.sg/"
              target="_blank"
@@ -734,8 +796,6 @@
             </div>
           </a>
 
-
- <!-- propsage login -->
           <a class="btn linkBtn"
              href="https://app.propsage.com/account/login"
              target="_blank"
@@ -748,10 +808,7 @@
               <span>AML Check</span>
             </div>
           </a>
-          
-         
 
-          <!-- IRAS -->
           <a class="btn linkBtn"
              href="https://mytax.iras.gov.sg/login/selection"
              target="_blank"
@@ -765,7 +822,6 @@
             </div>
           </a>
 
-          <!-- INLIS -->
           <a class="btn linkBtn"
              href="https://app.sla.gov.sg/inlis/#/home"
              target="_blank"
@@ -779,7 +835,6 @@
             </div>
           </a>
 
-          <!-- MOM -->
           <a class="btn linkBtn"
              href="https://www.mom.gov.sg/eservices/services/check-work-pass-and-application-status"
              target="_blank"
@@ -793,7 +848,6 @@
             </div>
           </a>
 
-          <!-- Singpost -->
           <a class="btn linkBtn"
              href="https://www.singpost.com/send-receive/receive-mail-parcel/mail-redirection-service"
              target="_blank"
@@ -807,7 +861,6 @@
             </div>
           </a>
 
-          <!-- SP App -->
           <a class="btn linkBtn"
              href="https://apps.apple.com/dk/app/sp-utilities-ev-charging/id596749130"
              target="_blank"
@@ -821,7 +874,6 @@
             </div>
           </a>
 
-          <!-- SEA Home -->
           <a class="btn linkBtn"
              href="https://backend.singaporeestateagency.com/login"
              target="_blank"
@@ -834,8 +886,7 @@
               <span>Agent Net</span>
             </div>
           </a>
-          
-           <!-- HDB Sales Price -->
+
           <a class="btn linkBtn"
              href="https://services2.hdb.gov.sg/webapp/BB33RTIS/BB33PReslTrans.jsp"
              target="_blank"
@@ -848,9 +899,7 @@
               <span>Sale Transactions</span>
             </div>
           </a>
-          
-          
-           <!-- HDB Rental Price -->
+
           <a class="btn linkBtn"
              href="https://services2.hdb.gov.sg/webapp/BR12AWRentalEnq/BR12PSearch.jsp"
              target="_blank"
@@ -863,9 +912,7 @@
               <span>Rental Transactions</span>
             </div>
           </a>
-          
-          
-          <!-- HDB Portal -->
+
           <a class="btn linkBtn" href="https://homes.hdb.gov.sg/home/landing"
              target="_blank"
              rel="noopener">
@@ -877,8 +924,6 @@
               <span>Flat Dashboard</span>
             </div>
           </a>
-          
-
         </div>
 
         <!-- SEARCH Section -->
@@ -943,12 +988,9 @@
   </div>
 
   <script>
-    /* DATA */
-    const NEWS = [
-      { tag:"NEW",  text:"CDD Form Checker updated (quick answers).", href:"https://www.sea-sg.com/cdd-form-chekcer" },
-      { tag:"TIP",  text:"Use Search to find A1/A2/U5 instantly.", href:"#"},
-      { tag:"NOTE", text:"If icon wrong: delete old icon, add again.", href:"#"}
-    ];
+    /* =========================
+       DATA
+       ========================= */
 
     const FORMS = [
       { title:"CDD Form Checker", sub:"Which forms do I need?", href:"https://www.sea-sg.com/cdd-form-checker",
@@ -1004,33 +1046,166 @@
               </svg>`
       },
       {
-  title:"Mortgage Calculator",
-  sub:"Monthly repayment estimate",
-  href:"https://www.sea-sg.com/mortgage-calculator",
-  icon:`<svg viewBox="0 0 24 24">
-          <path d="M3 21h18"/>
-          <path d="M5 21V9l7-5 7 5v12"/>
-          <path d="M9 21v-6h6v6"/>
-          <path d="M10 11h4"/>
-        </svg>`
-},
-{
-  title: "Sales Proceeds Estimator",
-  sub: "Estimate net cash proceeds",
-  href: "https://www.sea-sg.com/sales-proceeds-estimator",
-  icon: `<svg viewBox="0 0 24 24">
-           <path d="M3 21h18"/>
-           <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
-           <path d="M9 17h6"/>
-           <path d="M9 13h6"/>
-           <path d="M9 9h6"/>
-         </svg>`
-}
-
-
+        title:"Mortgage Calculator",
+        sub:"Monthly repayment estimate",
+        href:"https://www.sea-sg.com/mortgage-calculator",
+        icon:`<svg viewBox="0 0 24 24">
+                <path d="M3 21h18"/>
+                <path d="M5 21V9l7-5 7 5v12"/>
+                <path d="M9 21v-6h6v6"/>
+                <path d="M10 11h4"/>
+              </svg>`
+      },
+      {
+        title: "Sales Proceeds Estimator",
+        sub: "Estimate net cash proceeds",
+        href: "https://www.sea-sg.com/sales-proceeds-estimator",
+        icon: `<svg viewBox="0 0 24 24">
+                 <path d="M3 21h18"/>
+                 <path d="M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
+                 <path d="M9 17h6"/>
+                 <path d="M9 13h6"/>
+                 <path d="M9 9h6"/>
+               </svg>`
+      }
     ];
 
-    /* HELPERS */
+    /* still searchable even though Useful Links button is direct link */
+    const LINKS = [
+      { title:"ConnectingHomes (Main Site)", sub:"Homepage", href:"https://www.connectinghomes.sg",
+        icon:`<svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg>` },
+      { title:"SEA App Home", sub:"seaapp.pages.dev", href:"https://seaapp.pages.dev/",
+        icon:`<svg viewBox="0 0 24 24"><path d="M12 2l8 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><path d="M9 22V12h6v10"/></svg>` },
+    ];
+
+    const ALL = [
+      ...FORMS.map(x => ({...x, _type:"Form"})),
+      ...TOOLS.map(x => ({...x, _type:"Tool"})),
+      ...LINKS.map(x => ({...x, _type:"Link"})),
+    ];
+
+    /* =========================
+       EPNEWS – Property News Carousel
+       ========================= */
+
+    const EPNEWS_API_BASE =
+      "https://edgeprop-news-api.david-ang-sea.workers.dev/api/edgeprop-latest";
+
+    const EPNEWS_PLACEHOLDER_IMG =
+      "https://images.squarespace-cdn.com/content/6094af46889c8970aa4bcc4b/13391b57ea0/SEA+News.png?format=750w";
+
+    const EPNEWS_REFRESH_EVERY_MS = 5 * 60 * 1000;
+    const EPNEWS_SCROLL_STEP = 260;
+
+    const EPNEWS_carousel = document.getElementById("EPNEWS_carousel");
+    const EPNEWS_controlBtns = document.querySelectorAll(".EPNEWS_btn");
+
+    function EPNEWS_safeText(s){
+      return (s == null) ? "" : String(s);
+    }
+
+    function EPNEWS_escapeHtml(s){
+      return EPNEWS_safeText(s)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
+    }
+
+    function EPNEWS_firstNonEmpty(){
+      for (let i=0;i<arguments.length;i++){
+        const v = arguments[i];
+        if (v != null && String(v).trim() !== "") return v;
+      }
+      return "";
+    }
+
+    function EPNEWS_formatDateISO(iso){
+      if(!iso) return "";
+      const cleaned = String(iso).replace(/\bSGT\b/i,"GMT+0800");
+      const t = Date.parse(cleaned);
+      if(!Number.isFinite(t)) return "";
+      return new Date(t).toLocaleDateString("en-SG", {
+        day:"2-digit", month:"short", year:"numeric"
+      });
+    }
+
+    function EPNEWS_render(items){
+      if(!EPNEWS_carousel) return;
+
+      if(!Array.isArray(items) || items.length === 0){
+        EPNEWS_carousel.innerHTML =
+          '<div class="EPNEWS_loading">No property news found.</div>';
+        return;
+      }
+
+      EPNEWS_carousel.innerHTML = items.map(it => {
+        const title = EPNEWS_safeText(it.title);
+        const url = EPNEWS_safeText(it.url);
+        const img = EPNEWS_firstNonEmpty(it.image, EPNEWS_PLACEHOLDER_IMG);
+        const dateTxt = EPNEWS_formatDateISO(it.date);
+
+        const sourcesArr =
+          Array.isArray(it.sources) && it.sources.length
+            ? it.sources
+            : (it.source ? [it.source] : []);
+
+        const chips = sourcesArr.slice(0,2)
+          .map(s => `<span class="EPNEWS_src">${EPNEWS_escapeHtml(s)}</span>`)
+          .join("");
+
+        const more =
+          sourcesArr.length > 2
+            ? `<span class="EPNEWS_src">+${sourcesArr.length-2}</span>`
+            : "";
+
+        return `
+          <a class="EPNEWS_card" href="${EPNEWS_escapeHtml(url)}" target="_blank" rel="noopener">
+            <img class="EPNEWS_img" src="${EPNEWS_escapeHtml(img)}" alt="">
+            <div class="EPNEWS_body">
+              <div class="EPNEWS_date">
+                <span>${EPNEWS_escapeHtml(dateTxt)}</span>
+                ${chips}${more}
+              </div>
+              <p class="EPNEWS_titleTxt">${EPNEWS_escapeHtml(title)}</p>
+            </div>
+          </a>
+        `;
+      }).join("");
+    }
+
+    async function EPNEWS_load(){
+      if(!EPNEWS_carousel) return;
+
+      try{
+        EPNEWS_carousel.innerHTML = '<div class="EPNEWS_loading">Loading…</div>';
+
+        const res = await fetch(`${EPNEWS_API_BASE}?t=${Date.now()}`, { cache:"no-store" });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+
+        const data = await res.json();
+        EPNEWS_render(data?.items || []);
+
+      }catch(err){
+        console.error("EPNEWS LOAD ERROR:", err);
+        EPNEWS_carousel.innerHTML =
+          '<div class="EPNEWS_loading">Failed to load news.</div>';
+      }
+    }
+
+    EPNEWS_controlBtns.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        if(!EPNEWS_carousel) return;
+        const dir = parseInt(btn.getAttribute("data-dir") || "1", 10);
+        EPNEWS_carousel.scrollBy({ left: dir * EPNEWS_SCROLL_STEP, behavior:"smooth" });
+      });
+    });
+
+    /* =========================
+       HELPERS
+       ========================= */
+
     function escapeHtml(str){
       return String(str)
         .replaceAll("&","&amp;")
@@ -1063,27 +1238,9 @@
       items.forEach(it => el.appendChild(makeBtn(it)));
     }
 
-    /* TICKER */
-    function renderTicker(){
-      const track = document.getElementById("tickerTrack");
-      const mini = document.getElementById("newsMini");
-      if(!track) return;
-
-      const parts = NEWS.map(n => {
-        const href = n.href && n.href !== "#" ? n.href : null;
-        const tag = n.tag ? `<span class="pill">${escapeHtml(n.tag)}</span>` : "";
-        const text = escapeHtml(n.text || "");
-        return href
-          ? `<a class="tickItem" href="${href}" target="_blank" rel="noopener">${tag}<span>${text}</span></a>`
-          : `<span class="tickItem">${tag}<span>${text}</span></span>`;
-      });
-
-      track.innerHTML = parts.join("") + parts.join("");
-      if(mini) mini.textContent = (NEWS[0] && NEWS[0].text) ? NEWS[0].text : "Latest notes";
-      if(NEWS.length <= 2) track.style.animationDuration = "40s";
-    }
-
-    /* SHEETS */
+    /* =========================
+       SHEETS
+       ========================= */
     let _scrollY = 0;
 
     function lockBody(){
@@ -1140,27 +1297,15 @@
       });
     }
 
-    /* SEARCH */
+    /* =========================
+       SEARCH
+       ========================= */
     const q = document.getElementById("q");
     const count = document.getElementById("count");
     const resultsWrap = document.getElementById("resultsWrap");
     const resultsGrid = document.getElementById("resultsGrid");
     const resultsCount = document.getElementById("resultsCount");
     const clearSearchBtn = document.getElementById("clearSearch");
-
-    // still searchable even though Useful Links button is direct link
-    const LINKS = [
-      { title:"ConnectingHomes (Main Site)", sub:"Homepage", href:"https://www.connectinghomes.sg",
-        icon:`<svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg>` },
-      { title:"SEA App Home", sub:"seaapp.pages.dev", href:"https://seaapp.pages.dev/",
-        icon:`<svg viewBox="0 0 24 24"><path d="M12 2l8 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><path d="M9 22V12h6v10"/></svg>` },
-    ];
-
-    const ALL = [
-      ...FORMS.map(x => ({...x, _type:"Form"})),
-      ...TOOLS.map(x => ({...x, _type:"Tool"})),
-      ...LINKS.map(x => ({...x, _type:"Link"})),
-    ];
 
     function applySearch(){
       const term = (q.value || "").trim().toLowerCase();
@@ -1197,19 +1342,19 @@
 
     q.addEventListener("input", applySearch);
 
-    /* INIT */
-    renderTicker();
+    /* =========================
+       INIT
+       ========================= */
     renderGrid(document.getElementById("formsGrid"), FORMS);
     renderGrid(document.getElementById("toolsGrid"), TOOLS);
     bindSheets();
     applySearch();
+
+    /* init EPNEWS */
+    EPNEWS_load();
+    if(EPNEWS_REFRESH_EVERY_MS > 0){
+      setInterval(EPNEWS_load, EPNEWS_REFRESH_EVERY_MS);
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
